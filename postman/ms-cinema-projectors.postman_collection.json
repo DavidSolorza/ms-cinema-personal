@@ -1,0 +1,181 @@
+{
+  "info": {
+    "_postman_id": "b9e4f321-8c2d-4e0b-af63-223344556677",
+    "name": "MS-Cinema - Projectors (Relación 1-1)",
+    "description": "Colección de pruebas para el módulo Projectors y su relación 1-1 con Theaters (Guía 2).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "projectorId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "theaterId",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Projectors (1-1)",
+      "description": "Endpoints del recurso /projectors (Guía 2_Relacion_1_1)",
+      "item": [
+        {
+          "name": "1. Crear Projector sin asociación (POST /projectors)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"brand\": \"Epson\",\n  \"high\": 1080,\n  \"width\": 1920\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projectors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projectors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2. Crear Projector asociado a Theater (POST /projectors)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"brand\": \"Epson\",\n  \"high\": 1080,\n  \"width\": 1920,\n  \"theaterId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projectors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projectors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3. Listar Projectors (GET /projectors)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projectors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projectors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. Obtener Projector por ID (GET /projectors/:id)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projectors/{{projectorId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projectors",
+                "{{projectorId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5. Actualizar / Reasignar Projector (PATCH /projectors/:id)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"brand\": \"Sony\",\n  \"theaterId\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projectors/{{projectorId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projectors",
+                "{{projectorId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "6. Eliminar Projector (DELETE /projectors/:id)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projectors/{{projectorId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projectors",
+                "{{projectorId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
+

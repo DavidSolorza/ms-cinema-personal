@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "a8f3e210-7b1c-4d9a-9e52-112233445566",
+    "name": "MS-Cinema - Theaters CRUD",
+    "description": "Colección de pruebas para el módulo Theaters (CRUD completo + Reporte SQL de salas grandes).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "theaterId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "minCapacity",
+      "value": "100",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Theaters",
+      "description": "Endpoints del recurso /theaters",
+      "item": [
+        {
+          "name": "1. Crear Teatro (POST /theaters)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"location\": \"Sala IMAX - Centro Mayor\",\n  \"capacity\": 150\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/theaters",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "theaters"
+              ]
+            },
+            "description": "Crea una nueva sala de cine validando location (string) y capacity (int entre 1 y 1000)."
+          },
+          "response": []
+        },
+        {
+          "name": "2. Listar Teatros (GET /theaters)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/theaters",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "theaters"
+              ]
+            },
+            "description": "Obtiene el listado completo de todas las salas de cine registradas."
+          },
+          "response": []
+        },
+        {
+          "name": "3. Obtener Teatro por ID (GET /theaters/:id)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/theaters/{{theaterId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "theaters",
+                "{{theaterId}}"
+              ]
+            },
+            "description": "Busca un teatro específico por su ID numérico."
+          },
+          "response": []
+        },
+        {
+          "name": "4. Actualizar Teatro (PATCH /theaters/:id)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"capacity\": 180\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/theaters/{{theaterId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "theaters",
+                "{{theaterId}}"
+              ]
+            },
+            "description": "Actualiza parcialmente la ubicación y/o capacidad de un teatro existente."
+          },
+          "response": []
+        },
+        {
+          "name": "5. Reporte Salas Grandes SQL (GET /theaters/reports/large/:minCapacity)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/theaters/reports/large/{{minCapacity}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "theaters",
+                "reports",
+                "large",
+                "{{minCapacity}}"
+              ]
+            },
+            "description": "Ejecuta el reporte en SQL puro devolviendo los teatros con capacidad >= minCapacity ordenados de mayor a menor."
+          },
+          "response": []
+        },
+        {
+          "name": "6. Eliminar Teatro (DELETE /theaters/:id)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/theaters/{{theaterId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "theaters",
+                "{{theaterId}}"
+              ]
+            },
+            "description": "Elimina un teatro por su ID numérico."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
+
