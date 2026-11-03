@@ -1,0 +1,390 @@
+{
+  "info": {
+    "_postman_id": "c0f5a432-9d3e-4f1c-b074-334455667788",
+    "name": "MS-Cinema - Movies y Screenings (Relación N-N)",
+    "description": "Pruebas de la guía 4: películas, funciones y reportes SQL. Requiere tener al menos una sala (theater) creada.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "movieId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "screeningId",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Movies",
+      "description": "Endpoints de /movies",
+      "item": [
+        {
+          "name": "1. Crear película (POST /movies)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/movies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movies"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Interestelar\",\n  \"duration\": 169,\n  \"date\": \"2014-11-07\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2. Crear otra película (POST /movies)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/movies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movies"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Matrix\",\n  \"duration\": 136,\n  \"date\": \"1999-03-31\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3. Listar películas (GET /movies)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/movies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movies"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. Obtener película por ID (GET /movies/:id)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/movies/{{movieId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movies",
+                "{{movieId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5. Actualizar película (PATCH /movies/:id)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/movies/{{movieId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movies",
+                "{{movieId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"duration\": 170\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "6. Reporte: película más antigua",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/movies/reports/oldest",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movies",
+                "reports",
+                "oldest"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "7. Reporte: película con más funciones",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/movies/reports/most-screenings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movies",
+                "reports",
+                "most-screenings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "8. Eliminar película (DELETE /movies/:id)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/movies/{{movieId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movies",
+                "{{movieId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Screenings",
+      "description": "Endpoints de /screenings",
+      "item": [
+        {
+          "name": "1. Crear función (POST /screenings)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/screenings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "screenings"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scheduledAt\": \"2026-11-15T19:30:00-05:00\",\n  \"theaterId\": 1,\n  \"movieId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2. Listar funciones (GET /screenings)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/screenings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "screenings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3. Obtener función por ID (GET /screenings/:id)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/screenings/{{screeningId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "screenings",
+                "{{screeningId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. Actualizar función (PATCH /screenings/:id)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/screenings/{{screeningId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "screenings",
+                "{{screeningId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scheduledAt\": \"2026-11-15T21:00:00-05:00\",\n  \"theaterId\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5. Reporte: próximas 3 funciones",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/screenings/reports/next-three",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "screenings",
+                "reports",
+                "next-three"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "6. Error 404: sala inexistente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/screenings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "screenings"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scheduledAt\": \"2026-11-20T18:00:00-05:00\",\n  \"theaterId\": 999,\n  \"movieId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "7. Eliminar función (DELETE /screenings/:id)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/screenings/{{screeningId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "screenings",
+                "{{screeningId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

@@ -9,9 +9,11 @@ export class Movie {
   @Column({ length: 180 })
   name!: string;
 
+  // Duracion en minutos.
   @Column({ type: 'int' })
   duration!: number;
 
+  // Fecha de estreno; se usa para identificar la pelicula mas antigua.
   @Column({ type: 'date' })
   date!: string;
 

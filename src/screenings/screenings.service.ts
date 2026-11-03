@@ -47,8 +47,10 @@ export class ScreeningsService {
     if (dto.theaterId !== undefined) screening.theater = await this.findTheater(dto.theaterId);
     if (dto.movieId !== undefined) screening.movie = await this.findMovie(dto.movieId);
 
-    await this.screeningsRepository.save(ScreeningMapper.mergeEntity(screening, dto));
-    return this.findOne(id);
+    const saved = await this.screeningsRepository.save(
+      ScreeningMapper.mergeEntity(screening, dto),
+    );
+    return this.findOne(saved.id);
   }
 
   async remove(id: number): Promise<{ message: string }> {
@@ -59,6 +61,7 @@ export class ScreeningsService {
 
   async getNextThree(): Promise<ScreeningResponseDto[]> {
     const rows = await this.customScreeningsRepository.findNextThree();
+    // La consulta SQL devuelve IDs, por eso se cargan las relaciones antes de mapear.
     return Promise.all(rows.map((row) => this.findOne(Number(row.id))));
   }
 
